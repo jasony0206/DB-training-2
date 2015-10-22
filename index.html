@@ -5,13 +5,62 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
 <link rel="stylesheet" href="style.css">
 <script>
-	var promise = $.get("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_hour.geojson");
-	promise.fail(function() { window.alert("fail!"); } );
-	promise.done(function(data) { console.log(data)} );
+  $.ajax({
+    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
+    success: function(data) {
+      var length = data.features.length;
+      for (i = 0; i < length; i++) {
+        console.log(data.features[i].properties.mag);
+        addEntry(data.features[i]);
+      }
+    }
+  });
+
+  function addEntry(feature) {
+    var properties = feature.properties;
+    var entryData = "<div class='panel'><strong>" + properties.place + "</strong><br>"
+                    + "magnitude: " + properties.mag + "<br>"
+                    + "time: " + properties.time + "<br></div>";
+    $("#earthquake-entries").append(entryData);
+  }
+
 </script>
 </head>
 
 <body>
 
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">My Site</a></h1>
+    </li>
+    <li class="toggle-topbar">
+    	<a href="#"><span>Menu</span></a>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a href="#">Right Button Active</a></li>
+      <li class="has-dropdown">
+        <a href="#">Right Button Dropdown</a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+          <li><a href="#">Active link in dropdown</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li><a href="#">Left Nav Button</a></li>
+    </ul>
+  </section>
+</nav>
+
+<section class="entry-container large-4 medium-6 columns" id="earthquake-entries"></section>
+
 </body>
+
 </html>

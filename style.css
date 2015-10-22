@@ -1,0 +1,17 @@
+.myclass1 {
+	background-color: yellow;
+}
+
+.myclass2 {
+	background-color: blue;
+}
+
+.panel {
+	padding: 0.5em;
+	margin-bottom: 1em;
+}
+
+.entry-container {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
