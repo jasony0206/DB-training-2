@@ -19,8 +19,8 @@
   function addEntry(feature) {
     var properties = feature.properties;
     var entryData = "<div class='panel'><strong>" + properties.place + "</strong><br>"
-                    + "magnitude: " + properties.mag + "<br>"
-                    + "time: " + properties.time + "<br></div>";
+                    + new Date(properties.time) + "<br>"
+                    + "magnitude: " + properties.mag + "<br></div>";
     $("#earthquake-entries").append(entryData);
   }
 
