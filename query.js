@@ -25,36 +25,36 @@ getEarthquakeData("1.0", "hour");
 getEarthquakeData("4.5", "day");
 
 // hourly
-$("#hour-mag0").click(function() {
+$("#mag0-hour").click(function() {
   getEarthquakeData("all", "hour");
 });
 
-$("#hour-mag1").click(function() {
+$("#mag1-hour").click(function() {
   getEarthquakeData("1.0", "hour");
 });
 
-$("#hour-mag2").click(function() {
+$("#mag2-hour").click(function() {
   getEarthquakeData("2.5", "hour");
 });
 
-$("#hour-mag3").click(function() {
+$("#mag3-hour").click(function() {
   getEarthquakeData("4.5", "hour");
 });
 
 
 // daily
-$("#day-mag0").click(function() {
+$("#mag0-day").click(function() {
   getEarthquakeData("all", "day");
 });
 
-$("#day-mag1").click(function() {
+$("#mag1-day").click(function() {
   getEarthquakeData("1.0", "day");
 });
 
-$("#day-mag2").click(function() {
+$("#mag2-day").click(function() {
   getEarthquakeData("2.5", "day");
 });
 
-$("#day-mag3").click(function() {
+$("#mag3-day").click(function() {
   getEarthquakeData("4.5", "day");
 });
