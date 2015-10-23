@@ -46,12 +46,16 @@
     <li class="tab-title"><a href="#past-day">Day</a></li>
   </ul>
   <div class="tabs-content">
-    <div class="content active" id="past-hour"></div>
+    <div class="content active" id="past-hour">
+      <div id="slider" class="range-slider" data-slider>
+        <span class="range-slider-handle" role="slider" tabindex="0"></span>
+        <span class="range-slider-active-segment"></span>
+        <input type="hidden">
+      </div>
+    </div>
     <div class="content" id="past-day"></div>
   </div>
 </section>
-
-<section class="entry-container large-4 medium-6 columns" id="earthquake-entries"></section>
 
 <!-- scripts -->
 <script>
@@ -64,7 +68,6 @@
     success: function(data) {
       var length = data.features.length;
       for (i = 0; i < length; i++) {
-        console.log(data.features[i].properties.mag);
         addEntry("past-hour", data.features[i]);
       }
     }
@@ -75,7 +78,6 @@
     success: function(data) {
       var length = data.features.length;
       for (i = 0; i < length; i++) {
-        console.log(data.features[i].properties.mag);
         addEntry("past-day", data.features[i]);
       }
     }
@@ -88,6 +90,13 @@
                     + "magnitude: " + properties.mag + "<br></div>";
     $("#" + tabName).append(entryData);
   }
+
+  $('[data-slider]').on('change.fndtn.slider', function(){
+    // do something when the value changes
+    console.log($('[data-slider]').attr('data-slider'));
+  });
+  
+
 </script>
 
 </body>
