@@ -1,30 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
 <link rel="stylesheet" href="style.css">
-<script>
-  $.ajax({
-    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
-    success: function(data) {
-      var length = data.features.length;
-      for (i = 0; i < length; i++) {
-        console.log(data.features[i].properties.mag);
-        addEntry(data.features[i]);
-      }
-    }
-  });
-
-  function addEntry(feature) {
-    var properties = feature.properties;
-    var entryData = "<div class='panel'><strong>" + properties.place + "</strong><br>"
-                    + new Date(properties.time) + "<br>"
-                    + "magnitude: " + properties.mag + "<br></div>";
-    $("#earthquake-entries").append(entryData);
-  }
-
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
 </head>
 
 <body>
@@ -59,8 +40,57 @@
   </section>
 </nav>
 
+<section class="large-5 medium-6 columns">
+  <ul class="tabs" data-tab>
+    <li class="tab-title active"><a href="#past-hour">Hour</a></li>
+    <li class="tab-title"><a href="#past-day">Day</a></li>
+  </ul>
+  <div class="tabs-content">
+    <div class="content active" id="past-hour"></div>
+    <div class="content" id="past-day"></div>
+  </div>
+</section>
+
 <section class="entry-container large-4 medium-6 columns" id="earthquake-entries"></section>
 
+<!-- scripts -->
+<script>
+  $(document).foundation();
+</script>
+
+<script>
+  $.ajax({
+    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
+    success: function(data) {
+      var length = data.features.length;
+      for (i = 0; i < length; i++) {
+        console.log(data.features[i].properties.mag);
+        addEntry("past-hour", data.features[i]);
+      }
+    }
+  });
+
+  $.ajax({
+    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
+    success: function(data) {
+      var length = data.features.length;
+      for (i = 0; i < length; i++) {
+        console.log(data.features[i].properties.mag);
+        addEntry("past-day", data.features[i]);
+      }
+    }
+  });
+
+  function addEntry(tabName, feature) {
+    var properties = feature.properties;
+    var entryData = "<div class='panel'><strong>" + properties.place + "</strong><br>"
+                    + new Date(properties.time) + "<br>"
+                    + "magnitude: " + properties.mag + "<br></div>";
+    $("#" + tabName).append(entryData);
+  }
+</script>
+
 </body>
+
 
 </html>
