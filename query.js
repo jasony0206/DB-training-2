@@ -26,6 +26,11 @@ function addEntry(tabName, feature) {
   pinDown(coordinates[1], coordinates[0]);
 }
 
+// when click day tab, make a call
+$("#tab-title-day").click(function() {
+  $("#mag3-day").click();
+});
+
 // hourly
 $("#mag0-hour").click(function() {
   getEarthquakeData("all", "hour");

@@ -44,8 +44,8 @@
 <div class="row container">
   <section class="large-5 medium-6 columns entry-section">
     <ul class="tabs" data-tab>
-      <li class="tab-title active"><a href="#past-hour-container">Hour</a></li>
-      <li class="tab-title"><a href="#past-day-container">Day</a></li>
+      <li id="tab-title-hour" class="tab-title active"><a href="#past-hour-container">Hour</a></li>
+      <li id="tab-title-day"class="tab-title"><a href="#past-day-container">Day</a></li>
     </ul>
     <div class="tabs-content">
       <div class="content active" id="past-hour-container">
@@ -92,7 +92,7 @@
     map = new google.maps.Map(mapCanvas, mapOptions)
 
     getEarthquakeData("1.0", "hour");
-    getEarthquakeData("4.5", "day");
+    //getEarthquakeData("4.5", "day");
   }
 
   function pinDown(latitude, longitude) {
