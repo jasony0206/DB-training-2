@@ -2,10 +2,12 @@ function getEarthquakeData(magnitude, period) {
   $.ajax({
     url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/" 
           + magnitude +"_" + period + ".geojson",
+
     success: function(data) {
       var length = data.features.length;
       var tabName = "past-" + period;
       $("#" + tabName).html("");
+
       for (i = 0; i < length; i++) {
         addEntry(tabName, data.features[i]);
       }
@@ -19,6 +21,9 @@ function addEntry(tabName, feature) {
                   + new Date(properties.time) + "<br>"
                   + "magnitude: " + properties.mag + "<br></div>";
   $("#" + tabName).append(entryData);
+
+  var coordinates = feature.geometry.coordinates;
+  pinDown(coordinates[1], coordinates[0]);
 }
 
 // hourly
