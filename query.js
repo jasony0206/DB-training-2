@@ -21,9 +21,6 @@ function addEntry(tabName, feature) {
   $("#" + tabName).append(entryData);
 }
 
-getEarthquakeData("1.0", "hour");
-getEarthquakeData("4.5", "day");
-
 // hourly
 $("#mag0-hour").click(function() {
   getEarthquakeData("all", "hour");

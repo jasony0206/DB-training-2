@@ -75,7 +75,7 @@
 <script>
   $(document).foundation();
 </script>
-<script src="query.js"></script>
+
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQVCK0j4q1CByyl4WwNxjGa20sZ58nOn8&signed_in=true&callback=initializeMap"></script>
 <script>
@@ -88,10 +88,28 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    var map = new google.maps.Map(mapCanvas, mapOptions)
+    map = new google.maps.Map(mapCanvas, mapOptions)
+
+    var marker = new google.maps.Marker({
+      position: losAngeles,
+      map: map
+    });
+
+    getEarthquakeData("1.0", "hour");
+    getEarthquakeData("4.5", "day");
   }
+
+  function pinDown(latitude, longitude) {
+    console.log(latitude + " " + longitude);
+    new google.maps.Marker({
+      position: {lat: latitude, lng: longitude},
+      map: map
+    });
+  }
+
   //google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+<script src="query.js"></script>
 
 </body>
 

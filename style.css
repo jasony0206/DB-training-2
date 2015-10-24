@@ -29,3 +29,7 @@
 .container {
 	padding: 1em;
 }
+
+.row {
+	//max-width: 100%;
+}
