@@ -1,22 +1,17 @@
-$.ajax({
-  url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson",
-  success: function(data) {
-    var length = data.features.length;
-    for (i = 0; i < length; i++) {
-      addEntry("past-hour", data.features[i]);
+function getEarthquakeData(magnitude, period) {
+  $.ajax({
+    url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/" 
+          + magnitude +"_" + period + ".geojson",
+    success: function(data) {
+      var length = data.features.length;
+      var tabName = "past-" + period;
+      $("#" + tabName).html("");
+      for (i = 0; i < length; i++) {
+        addEntry(tabName, data.features[i]);
+      }
     }
-  }
-});
-
-$.ajax({
-  url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson",
-  success: function(data) {
-    var length = data.features.length;
-    for (i = 0; i < length; i++) {
-      addEntry("past-day", data.features[i]);
-    }
-  }
-});
+  });
+}
 
 function addEntry(tabName, feature) {
   var properties = feature.properties;
@@ -26,7 +21,40 @@ function addEntry(tabName, feature) {
   $("#" + tabName).append(entryData);
 }
 
-$('[data-slider]').on('change.fndtn.slider', function(){
-  // do something when the value changes
-  console.log($('[data-slider]').attr('data-slider'));
+getEarthquakeData("1.0", "hour");
+getEarthquakeData("4.5", "day");
+
+// hourly
+$("#mag0-hour").click(function() {
+  getEarthquakeData("all", "hour");
+});
+
+$("#mag1-hour").click(function() {
+  getEarthquakeData("1.0", "hour");
+});
+
+$("#mag2-hour").click(function() {
+  getEarthquakeData("2.5", "hour");
+});
+
+$("#mag3-hour").click(function() {
+  getEarthquakeData("4.5", "hour");
+});
+
+
+// daily
+$("#mag0-day").click(function() {
+  getEarthquakeData("all", "day");
+});
+
+$("#mag1-day").click(function() {
+  getEarthquakeData("1.0", "day");
+});
+
+$("#mag2-day").click(function() {
+  getEarthquakeData("2.5", "day");
+});
+
+$("#mag3-day").click(function() {
+  getEarthquakeData("4.5", "day");
 });
