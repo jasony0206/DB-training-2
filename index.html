@@ -41,37 +41,57 @@
   </section>
 </nav>
 
-<section class="large-5 medium-6 columns entry-section">
-  <ul class="tabs" data-tab>
-    <li class="tab-title active"><a href="#past-hour-container">Hour</a></li>
-    <li class="tab-title"><a href="#past-day-container">Day</a></li>
-  </ul>
-  <div class="tabs-content">
-    <div class="content active" id="past-hour-container">
-      <label>Magnitude</label>
-      <input type="radio" name="magnitude-hour" value="0.0" id="mag0-hour" checked="checked"><label>All</label>
-      <input type="radio" name="magnitude-hour" value="1.0" id="mag1-hour"><label>M1.0+</label>
-      <input type="radio" name="magnitude-hour" value="2.5" id="mag2-hour"><label>M2.5+</label>
-      <input type="radio" name="magnitude-hour" value="4.5" id="mag3-hour"><label>M4.5+</label>
-      <div id="past-hour"></div>
-    </div>
+<div class="row container">
+  <section class="large-5 medium-6 columns entry-section">
+    <ul class="tabs" data-tab>
+      <li class="tab-title active"><a href="#past-hour-container">Hour</a></li>
+      <li class="tab-title"><a href="#past-day-container">Day</a></li>
+    </ul>
+    <div class="tabs-content">
+      <div class="content active" id="past-hour-container">
+        <label>Magnitude</label>
+        <input type="radio" name="magnitude-hour" value="0.0" id="mag0-hour" checked="checked"><label>All</label>
+        <input type="radio" name="magnitude-hour" value="1.0" id="mag1-hour"><label>M1.0+</label>
+        <input type="radio" name="magnitude-hour" value="2.5" id="mag2-hour"><label>M2.5+</label>
+        <input type="radio" name="magnitude-hour" value="4.5" id="mag3-hour"><label>M4.5+</label>
+        <div id="past-hour"></div>
+      </div>
 
-    <div class="content" id="past-day-container">
-      <label>Magnitude</label>
-      <input type="radio" name="magnitude-day" value="0.0" id="mag0-day"><label>All</label>
-      <input type="radio" name="magnitude-day" value="1.0" id="mag1-day"><label>M1.0+</label>
-      <input type="radio" name="magnitude-day" value="2.5" id="mag2-day"><label>M2.5+</label>
-      <input type="radio" name="magnitude-day" value="4.5" id="mag3-day" checked="checked"><label>M4.5+</label>
-      <div id="past-day"></div>
+      <div class="content" id="past-day-container">
+        <label>Magnitude</label>
+        <input type="radio" name="magnitude-day" value="0.0" id="mag0-day"><label>All</label>
+        <input type="radio" name="magnitude-day" value="1.0" id="mag1-day"><label>M1.0+</label>
+        <input type="radio" name="magnitude-day" value="2.5" id="mag2-day"><label>M2.5+</label>
+        <input type="radio" name="magnitude-day" value="4.5" id="mag3-day" checked="checked"><label>M4.5+</label>
+        <div id="past-day"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section id="map" class="large-7 columns"></section>
+</div>
 
 <!-- scripts -->
 <script>
   $(document).foundation();
 </script>
 <script src="query.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQVCK0j4q1CByyl4WwNxjGa20sZ58nOn8&signed_in=true&callback=initializeMap"></script>
+<script>
+  function initializeMap() {
+    var mapCanvas = document.getElementById('map');
+    var losAngeles = {lat: 34.05, lng: -118.25};
+    var mapOptions = {
+      center: losAngeles,
+      zoom: 4,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    var map = new google.maps.Map(mapCanvas, mapOptions)
+  }
+  //google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 
 </body>
 
