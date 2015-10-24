@@ -1,11 +1,15 @@
+$(document).foundation();
+
 function getEarthquakeData(magnitude, period) {
   $.ajax({
     url: "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/" 
           + magnitude +"_" + period + ".geojson",
+
     success: function(data) {
       var length = data.features.length;
       var tabName = "past-" + period;
       $("#" + tabName).html("");
+
       for (i = 0; i < length; i++) {
         addEntry(tabName, data.features[i]);
       }
@@ -19,10 +23,38 @@ function addEntry(tabName, feature) {
                   + new Date(properties.time) + "<br>"
                   + "magnitude: " + properties.mag + "<br></div>";
   $("#" + tabName).append(entryData);
+
+  var coordinates = feature.geometry.coordinates;
+  pinDown(coordinates[1], coordinates[0]);
 }
 
-getEarthquakeData("1.0", "hour");
-getEarthquakeData("4.5", "day");
+function initializeMap() {
+  var mapCanvas = document.getElementById('map');
+  var losAngeles = {lat: 34.05, lng: -118.25};
+  var africa = {lat: 7.18, lng: 21.09};
+  var mapOptions = {
+    center: africa,
+    zoom: 1,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  }
+
+  map = new google.maps.Map(mapCanvas, mapOptions)
+
+  getEarthquakeData("1.0", "hour");
+  //getEarthquakeData("4.5", "day");
+}
+
+function pinDown(latitude, longitude) {
+  new google.maps.Marker({
+    position: {lat: latitude, lng: longitude},
+    map: map
+  });
+}
+
+// when click day tab, make a call
+$("#tab-title-day").click(function() {
+  $("#mag3-day").click();
+});
 
 // hourly
 $("#mag0-hour").click(function() {
