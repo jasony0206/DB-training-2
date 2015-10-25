@@ -1,14 +1,11 @@
-.myclass1 {
-	background-color: yellow;
-}
-
-.myclass2 {
-	background-color: blue;
-}
 
 .panel {
 	padding: 0.5em;
 	margin-bottom: 1em;
+}
+
+.panel p {
+	font-size: 0.9em;
 }
 
 .tabs-content > .content {
@@ -19,11 +16,12 @@
 	border-style: solid;
 	border-width: 1px;
 	border-color: #d8d8d8;;
-	//margin: 1em;
+	height: 40em;
+	overflow: scroll;
 }
 
 #map {
-	height: 30em;
+	height: 40em;
 }
 
 .container {

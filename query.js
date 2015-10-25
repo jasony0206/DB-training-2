@@ -8,8 +8,12 @@ function getEarthquakeData(magnitude, period) {
     success: function(data) {
       var length = data.features.length;
       var tabName = "past-" + period;
+      
+      // Clean up content from previous calls
       $("#" + tabName).html("");
+      removeMarkers();
 
+      // Add en entry for each earthquake
       for (i = 0; i < length; i++) {
         addEntry(tabName, data.features[i]);
       }
@@ -19,41 +23,26 @@ function getEarthquakeData(magnitude, period) {
 
 function addEntry(tabName, feature) {
   var properties = feature.properties;
-  var entryData = "<div class='panel'><strong>" + properties.place + "</strong><br>"
+  var entryData = "<div class='panel'><p><strong>" + properties.place + "</strong><br>"
                   + new Date(properties.time) + "<br>"
-                  + "magnitude: " + properties.mag + "<br></div>";
+                  + "magnitude: " + properties.mag + "</p></div>";
   $("#" + tabName).append(entryData);
 
   var coordinates = feature.geometry.coordinates;
-  pinDown(coordinates[1], coordinates[0]);
-}
-
-function initializeMap() {
-  var mapCanvas = document.getElementById('map');
-  var losAngeles = {lat: 34.05, lng: -118.25};
-  var africa = {lat: 7.18, lng: 21.09};
-  var mapOptions = {
-    center: africa,
-    zoom: 1,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  }
-
-  map = new google.maps.Map(mapCanvas, mapOptions)
-
-  getEarthquakeData("1.0", "hour");
-  //getEarthquakeData("4.5", "day");
-}
-
-function pinDown(latitude, longitude) {
-  new google.maps.Marker({
-    position: {lat: latitude, lng: longitude},
-    map: map
-  });
+  putMarker(coordinates[1], coordinates[0]);
 }
 
 // when click day tab, make a call
+$("#tab-title-hour").click(function() {
+  $("#mag0-hour").click();
+});
+
 $("#tab-title-day").click(function() {
-  $("#mag3-day").click();
+  $("#mag2-day").click();
+});
+
+$("#tab-title-week").click(function() {
+  $("#mag3-week").click();
 });
 
 // hourly
@@ -89,4 +78,21 @@ $("#mag2-day").click(function() {
 
 $("#mag3-day").click(function() {
   getEarthquakeData("4.5", "day");
+});
+
+// daily
+$("#mag0-week").click(function() {
+  getEarthquakeData("all", "week");
+});
+
+$("#mag1-week").click(function() {
+  getEarthquakeData("1.0", "week");
+});
+
+$("#mag2-week").click(function() {
+  getEarthquakeData("2.5", "week");
+});
+
+$("#mag3-week").click(function() {
+  getEarthquakeData("4.5", "week");
 });

@@ -46,6 +46,7 @@
     <ul class="tabs" data-tab>
       <li id="tab-title-hour" class="tab-title active"><a href="#past-hour-container">Hour</a></li>
       <li id="tab-title-day"class="tab-title"><a href="#past-day-container">Day</a></li>
+      <li id="tab-title-week"class="tab-title"><a href="#past-week-container">Week</a></li>
     </ul>
     <div class="tabs-content">
       <div class="content active" id="past-hour-container">
@@ -61,9 +62,18 @@
         <label>Magnitude</label>
         <input type="radio" name="magnitude-day" value="0.0" id="mag0-day"><label>All</label>
         <input type="radio" name="magnitude-day" value="1.0" id="mag1-day"><label>M1.0+</label>
-        <input type="radio" name="magnitude-day" value="2.5" id="mag2-day"><label>M2.5+</label>
-        <input type="radio" name="magnitude-day" value="4.5" id="mag3-day" checked="checked"><label>M4.5+</label>
+        <input type="radio" name="magnitude-day" value="2.5" id="mag2-day" checked="checked"><label>M2.5+</label>
+        <input type="radio" name="magnitude-day" value="4.5" id="mag3-day"><label>M4.5+</label>
         <div id="past-day"></div>
+      </div>
+
+      <div class="content" id="past-week-container">
+        <label>Magnitude</label>
+        <input type="radio" name="magnitude-week" value="0.0" id="mag0-week"><label>All</label>
+        <input type="radio" name="magnitude-week" value="1.0" id="mag1-week"><label>M1.0+</label>
+        <input type="radio" name="magnitude-week" value="2.5" id="mag2-week"><label>M2.5+</label>
+        <input type="radio" name="magnitude-week" value="4.5" id="mag3-week" checked="checked"><label>M4.5+</label>
+        <div id="past-week"></div>
       </div>
     </div>
   </section>
@@ -75,7 +85,7 @@
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQVCK0j4q1CByyl4WwNxjGa20sZ58nOn8&signed_in=true&callback=initializeMap"></script>
 <script src="query.js"></script>
-
+<script src="map.js"></script>
 </body>
 
 </html>
