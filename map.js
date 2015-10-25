@@ -3,6 +3,7 @@ function initializeMap() {
   var losAngeles = {lat: 34.05, lng: -118.25};
   var africa = {lat: 7.18, lng: 21.09};
   var italy = {lat: 41.90, lng: 12.48};
+  
   var mapOptions = {
     center: italy,
     zoom: 2,

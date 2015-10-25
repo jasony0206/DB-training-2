@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.css">
 <link rel="stylesheet" href="style.css">
+<link href='https://fonts.googleapis.com/css?family=Noto+Serif' rel='stylesheet' type='text/css'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
@@ -10,36 +11,22 @@
 </head>
 
 <body>
-
+<div class="contain-to-grid">
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
-    <li class="name">
-      <h1><a href="#">My Site</a></h1>
-    </li>
-    <li class="toggle-topbar">
-    	<a href="#"><span>Menu</span></a>
-    </li>
+    <li class="name"><h1><a href="#">Earthqauke Locator</a></h1></li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
 
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li><a href="#">Right Button Active</a></li>
-      <li class="has-dropdown">
-        <a href="#">Right Button Dropdown</a>
-        <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-          <li><a href="#">Active link in dropdown</a></li>
-        </ul>
-      </li>
-    </ul>
-
-    <!-- Left Nav Section -->
-    <ul class="left">
-      <li><a href="#">Left Nav Button</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
     </ul>
   </section>
 </nav>
+</div>
 
 <div class="row container">
   <section class="large-5 medium-6 columns entry-section">
@@ -48,6 +35,7 @@
       <li id="tab-title-day"class="tab-title"><a href="#past-day-container">Day</a></li>
       <li id="tab-title-week"class="tab-title"><a href="#past-week-container">Week</a></li>
     </ul>
+    
     <div class="tabs-content">
       <div class="content active" id="past-hour-container">
         <label>Magnitude</label>
@@ -78,7 +66,7 @@
     </div>
   </section>
 
-  <section id="map" class="large-7 columns"></section>
+  <section id="map" class="large-7 medium-6 columns"></section>
 </div>
 
 <!-- scripts -->

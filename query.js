@@ -25,7 +25,7 @@ function addEntry(tabName, feature) {
   var properties = feature.properties;
   var entryData = "<div class='panel'><p><strong>" + properties.place + "</strong><br>"
                   + new Date(properties.time) + "<br>"
-                  + "magnitude: " + properties.mag + "</p></div>";
+                  + "Magnitude: " + properties.mag + "</p></div>";
   $("#" + tabName).append(entryData);
 
   var coordinates = feature.geometry.coordinates;
